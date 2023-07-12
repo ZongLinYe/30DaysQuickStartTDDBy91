@@ -1,0 +1,31 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio Version 17
+VisualStudioVersion = 17.6.33815.320
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "30DaysQuickStartTDDBy91", "30DaysQuickStartTDDBy91\30DaysQuickStartTDDBy91.csproj", "{F846D799-2C3E-4893-BB20-D25787E4B482}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "30DaysQuickStartTDDBy91Tests", "30DaysQuickStartTDDBy91Tests\30DaysQuickStartTDDBy91Tests.csproj", "{9B0B6EB1-0868-4187-840B-8A75EF307E5E}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{F846D799-2C3E-4893-BB20-D25787E4B482}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{F846D799-2C3E-4893-BB20-D25787E4B482}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{F846D799-2C3E-4893-BB20-D25787E4B482}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{F846D799-2C3E-4893-BB20-D25787E4B482}.Release|Any CPU.Build.0 = Release|Any CPU
+		{9B0B6EB1-0868-4187-840B-8A75EF307E5E}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{9B0B6EB1-0868-4187-840B-8A75EF307E5E}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{9B0B6EB1-0868-4187-840B-8A75EF307E5E}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{9B0B6EB1-0868-4187-840B-8A75EF307E5E}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {7769EFA3-A9D8-4484-A6EB-1A03DB4FD2B3}
+	EndGlobalSection
+EndGlobal
