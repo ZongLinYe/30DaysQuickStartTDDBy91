@@ -12,5 +12,10 @@ namespace FirstUnitTest
         {
             return firstNumber + secondNumber;
         }
+
+        public int Minus(int firstNumber, int secondNumber)
+        {
+            throw new NotImplementedException();
+        }
     }
 }
