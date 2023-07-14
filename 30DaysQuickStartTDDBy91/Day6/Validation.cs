@@ -6,6 +6,7 @@ using System.Threading.Tasks;
 
 namespace _30DaysQuickStartTDDBy91.Day6
 { 
+    // 方法一
     // 建構式注入 Constructor Injection
     // 可以使用 AutoFac 等 DI 套件，自動注入，不用手動 new 物件，
     // 甚至 ASP.NET Core 有內建的 DI 注入功能
@@ -58,6 +59,7 @@ namespace _30DaysQuickStartTDDBy91.Day6
         }
     }
 
+    // 方法二
     // 公開屬性 （public setter property）
     public class ValidationPublicSetterProperty
     {
@@ -84,6 +86,7 @@ namespace _30DaysQuickStartTDDBy91.Day6
         }
     }
 
+    // 方法三
     // 呼叫方法時傳入參數
     public class ValidationPassParametersWhenCallingMethod
     {
@@ -99,7 +102,7 @@ namespace _30DaysQuickStartTDDBy91.Day6
             return passwordByDao == hashResult;
         }
     }
-
+    // 方法四
     // 可覆寫的保護方法  
     public class ValidationOverrideVirtualMethod
     { 
