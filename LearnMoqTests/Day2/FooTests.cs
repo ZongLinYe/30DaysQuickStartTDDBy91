@@ -33,9 +33,11 @@ namespace LearnMoq.Day2.Tests
             // 這樣就可以保證在DoB方法中，讀取到的內容一定是"I'm slim"。
             // 而 fakeLog2.Verify(log => log.Write("I'm slim"));
             // 則是驗證fakeLog2是否被調用了Write方法，並且傳入的參數是"I'm slim"
-            // 這裡的fakeLog1是Stub，而fakeLog2是Mock。
-             
-            Assert.AreEqual("I'm slim", fakeLog1.Object.Read());
+            // 這裡的fakeLog1是Stub，而fakeLog2是Mock。             
+
+            //Assert.AreEqual("I'm slim", fakeLog1.Object.Read());
+            // 雖然以上這樣寫會是對的，但 fakeLog1.Object.Read() 本來就被設定 Return "I'm slim"，再跟 "I'm slim" 比較就沒有意義了。
+
 
         }
     }
