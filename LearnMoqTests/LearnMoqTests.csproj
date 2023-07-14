@@ -1,8 +1,7 @@
-﻿<Project Sdk="Microsoft.NET.Sdk">
+<Project Sdk="Microsoft.NET.Sdk">
 
   <PropertyGroup>
     <TargetFramework>net6.0</TargetFramework>
-    <RootNamespace>_30DaysQuickStartTDDBy91Tests</RootNamespace>
     <ImplicitUsings>enable</ImplicitUsings>
     <Nullable>enable</Nullable>
 
@@ -18,7 +17,7 @@
   </ItemGroup>
 
   <ItemGroup>
-    <ProjectReference Include="..\30DaysQuickStartTDDBy91\30DaysQuickStartTDDBy91.csproj" />
+    <ProjectReference Include="..\LearnMoq\LearnMoq.csproj" />
   </ItemGroup>
 
 </Project>
