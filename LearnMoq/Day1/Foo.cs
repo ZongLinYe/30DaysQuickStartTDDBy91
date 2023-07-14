@@ -10,6 +10,15 @@ namespace LearnMoq.Day1
     // Foo 類別依賴 Log 類別
     public class Foo
     {
+        // User Story: 作為一個Foo，我希望在DoA方法中，能夠寫入"Finish A"到Log中。
+        // 但是 Log 類別是實體物件，無法直接驗證
+        // 所以我們需要用 Mock 來模擬 Log 類別
+        // 現在我們期望能夠寫一個單元測試，驗證運行DoA方法時，是否向日誌寫入了Finish A
+        // 那麼問題來了，我們需要在每次運行單元測試時，要真正的讀寫檔。
+        // 那麼這個單元測試能夠做到運行快，結果穩定，隔離等等要求嗎？
+        // 如果我們的例子中的日誌系統換成資料庫，網路請求會怎樣呢？
+        // 如果這個時候我們能夠偽造一個日誌系統，是否問題就能夠解決了呢？
+        // 那麼首先我們需要引入一個介面ILog
         // Step1. 建立 ILog 介面
         //private Log _log;
         private ILog _log;

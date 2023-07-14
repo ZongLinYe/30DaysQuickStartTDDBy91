@@ -14,9 +14,8 @@ namespace LearnMoq.Day2.Tests
         [TestMethod()]
         public void DoBTest()
         {
-            // 請注意這裡的Mock和Moq框架中的Mock<T>不是一個概念！！
-            // 這裡的Mock是一個自定義的類，用於模擬ILog的行為。
-            // 而Moq框架中的Mock<T>是一個泛型類，用於模擬任意類型的行為。
+            // 請注意這裡的Mock和Moq框架中的Mock<T>不是一個概念！！???
+            // 這裡的Mock是一個自定義的類，用於模擬ILog的行為。       
            
             var fakeLog1 = new Mock<ILog>();
             var fakeLog2 = new Mock<ILog>();
@@ -34,7 +33,9 @@ namespace LearnMoq.Day2.Tests
             // 這樣就可以保證在DoB方法中，讀取到的內容一定是"I'm slim"。
             // 而 fakeLog2.Verify(log => log.Write("I'm slim"));
             // 則是驗證fakeLog2是否被調用了Write方法，並且傳入的參數是"I'm slim"
-            // 這裡的fakeLog1是Stub，而fakeLog2是Mock。       
+            // 這裡的fakeLog1是Stub，而fakeLog2是Mock。
+             
+            Assert.AreEqual("I'm slim", fakeLog1.Object.Read());
 
         }
     }

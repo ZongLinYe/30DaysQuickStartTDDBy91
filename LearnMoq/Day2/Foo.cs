@@ -10,12 +10,13 @@ namespace LearnMoq.Day2
     {
         private ILog _log1;
         private ILog _log2;
-
-        // Stub(存根)和Mock(模擬)
-        // Stub和Mock都是測試方法依賴隔離的偽造物件，
-        // 不同之處是Stub是測試方法運行所需要的依賴，
-        // Mock是測試方法驗證說需要的依賴。
+    
         // UserStory: 作為一個Foo，我希望在DoB方法中，能夠讀取Log1的內容，並寫入到Log2中。
+        // Stub 與 Mock 的差異
+        // Stub: 用來設定當呼叫某個方法時，要回傳什麼值。
+        // Mock: 用來驗證某個方法是否有被呼叫。
+        // Stub 對應方法的是 Setup, Mock 對應的方法是 Verify。
+        // Stub和Mock都是測試方法依賴隔離的偽造物件
         public Foo(ILog log1, ILog log2)
         {
             _log1 = log1;

@@ -17,8 +17,9 @@ namespace LearnMoq.Day1.Tests
             // 傳統做法，手動建立 FakeLog物件，並傳入 Foo 的建構子。
             var fakeLog = new FakeLog();
             var foo = new Foo(fakeLog);
-            foo.DoA();
-            Assert.AreEqual("Finish A", fakeLog.Log);
+            foo.DoA(); // 內含 fakeLog.Write("Finish A");  會把 "Finish A" 存到 fakeLog 的 Log 屬性
+            var expected = "Finish A";
+            Assert.AreEqual(expected, fakeLog.Log);
         }
 
         [TestMethod()]
@@ -29,6 +30,7 @@ namespace LearnMoq.Day1.Tests
             var foo = new Foo(fakeLog.Object);
             foo.DoA();
             fakeLog.Verify(x => x.Write("Finish A"));
+
         }
 
 
