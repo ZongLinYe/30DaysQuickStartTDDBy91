@@ -11,6 +11,8 @@ namespace LearnMoq.Day3
         Bar Bar { get; set; }
         string Name { get; set; }
         int Value { get; set; }
+        EventHandler FooEvent { get; set; }
+
         bool DoSomething(string value);
         bool DoSomething(int number, string value);
         string DoSomethingStringy(string value);
