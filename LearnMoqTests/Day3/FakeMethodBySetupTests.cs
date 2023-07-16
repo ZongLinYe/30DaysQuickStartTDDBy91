@@ -10,10 +10,10 @@ using Moq;
 namespace LearnMoq.Day3.Tests
 {
     [TestClass()]
-    public class BarTests
+    public class FakeMethodBySetupTests
     {
         [TestMethod()]
-        public void SubmitTest()
+        public void FakeMethodBySetupStubTests()
         {
             // 我期望IFoo的GetCount方法返回值為 3 那麼就可以寫
             var fakeFoo = new Mock<IFoo>();
