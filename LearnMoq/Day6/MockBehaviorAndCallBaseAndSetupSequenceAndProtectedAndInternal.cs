@@ -4,11 +4,11 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace LearnMoq.Day5
+namespace LearnMoq.Day6
 {
-    public class ItAndCallBackAndVerification
+    public class MockBehaviorAndCallBaseAndSetupSequenceAndProtectedAndInternal
     {
-      
+       
     }
     public interface IFoo
     {

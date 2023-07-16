@@ -8,7 +8,6 @@ using System.Threading.Tasks;
 using LearnMoq.Day1.Tests;
 using Moq;
 using System.Text.RegularExpressions;
-using LearnMoq.Day3;
 using System.Linq.Expressions;
 using System.Reflection.PortableExecutable;
 
