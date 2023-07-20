@@ -7,7 +7,7 @@ using System.Threading.Tasks;
 
 namespace _30DaysQuickStartTDDBy91.Day14
 {
-    internal class Inspection
+    internal class Inspection_Step6
     {
 
         /// <summary>
