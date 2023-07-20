@@ -5,9 +5,9 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace _30DaysQuickStartTDDBy91.Day14
+namespace _30DaysQuickStartTDDBy91.Day16
 {
-    internal class UnitTestAndE2ETestFromRedLightToGreenLight_Step7
+    internal class CompliantWithOcpAndDip_Step8
     {
 
         /// <summary>
@@ -33,30 +33,42 @@ namespace _30DaysQuickStartTDDBy91.Day14
                 {
                     // 初始化物流商物件
                     //計算
-                    BlackCat blackCat = new BlackCat() { ShipProduct = product };
-                    blackCat.Calculate();
+                    //BlackCat blackCat = new BlackCat() { ShipProduct = product };
+                    //blackCat.Calculate();
+                    //companyName = blackCat.GetsComapanyName();
+                    //fee = blackCat.GetsFee();
+                    ILogistics logistics = new BlackCat() { ShipProduct = product };
+                    logistics.Calculate();
                     // 取得物流商名稱
-                    companyName = blackCat.GetsCompanyName();
+                    companyName = logistics.GetsCompanyName();
                     // 取得運費結果
-                    fee = blackCat.GetsFee();
+                    fee = logistics.GetsFee();
                 }
                 //選新竹貨運，計算出運費
                 else if (this.drpCompany.SelectedValue == "2")
                 {
                     //計算
-                    Hsinchu hsinchu = new Hsinchu() { ShipProduct = product };
-                    hsinchu.Calculate();
-                    companyName = hsinchu.GetsComapanyName();
-                    fee = hsinchu.GetsFee();
+                    //Hsinchu hsinchu = new Hsinchu() { ShipProduct = product };
+                    //hsinchu.Calculate();
+                    //companyName = hsinchu.GetsComapanyName();
+                    //fee = hsinchu.GetsFee();
+                    ILogistics logistics = new Hsinchu() { ShipProduct = product };
+                    logistics.Calculate();
+                    companyName = logistics.GetsCompanyName();
+                    fee = logistics.GetsFee();
                 }
                 //選郵局，計算出運費
                 else if (this.drpCompany.SelectedValue == "3")
                 {
                     //計算
-                    PostOffice postOffice = new PostOffice() { ShipProduct = product };
-                    postOffice.Calculate();
-                    companyName = postOffice.GetsCompanyName();
-                    fee = postOffice.GetsFee();
+                    //PostOffice postOffice = new PostOffice() { ShipProduct = product };
+                    //postOffice.Calculate();
+                    //companyName = postOffice.GetsComapanyName();
+                    //fee = postOffice.GetsFee();
+                    ILogistics logistics = new PostOffice() { ShipProduct = product };
+                    logistics.Calculate();
+                    companyName = logistics.GetsCompanyName();
+                    fee = logistics.GetsFee();
                 }
                 //發生預期以外的狀況，呈現警告訊息，回首頁
                 else
@@ -83,10 +95,7 @@ namespace _30DaysQuickStartTDDBy91.Day14
             this.lblCharge.Text = fee.ToString();
         }
 
-        /// <summary>
-        /// 取得畫面資料
-        /// </summary>
-        /// <returns></returns>
+        /// <summary>/// 取得畫面資料/// </summary>/// <returns></returns>
         private Product GetProduct()
         {
             var result = new Product
@@ -106,13 +115,59 @@ namespace _30DaysQuickStartTDDBy91.Day14
         }
     }
 
-    public class BlackCat
+    public interface ILogistics
+    {
+        //Product ShipProduct { get; set; }
+
+        void Calculate();
+        string GetsCompanyName();
+        double GetsFee();
+    }
+
+    public class BlackCat : ILogistics
+    {
+        private double _fee;
+        private readonly string _companyName;
+        public Product ShipProduct { get; set; }
+        public BlackCat()
+        {
+            _companyName = "黑貓";
+        }
+        public void Calculate()
+        {
+            var weight = ShipProduct.Weight;
+
+            //計算運費
+            if (weight < 20)
+            {
+
+                _fee = 100 + weight * 10;
+            }
+            else
+            {
+                _fee = 500;
+            }
+        }
+
+
+
+        public string GetsCompanyName()
+        {
+            return _companyName;
+        }
+
+        public double GetsFee()
+        {
+            return _fee;
+        }
+    }
+
+    public class Hsinchu : ILogistics
     {
         public void Calculate()
         {
             throw new NotImplementedException();
         }
-
 
         public Product ShipProduct { get; set; }
 
@@ -125,29 +180,10 @@ namespace _30DaysQuickStartTDDBy91.Day14
         {
             throw new NotImplementedException();
         }
+ 
     }
 
-    public class Hsinchu
-    {
-        public void Calculate()
-        {
-            throw new NotImplementedException();
-        }
-
-        public Product ShipProduct { get; set; }
-
-        public string GetsComapanyName()
-        {
-            throw new NotImplementedException();
-        }
-
-        public double GetsFee()
-        {
-            throw new NotImplementedException();
-        }
-    }
-
-    public class PostOffice
+    public class PostOffice : ILogistics
     {
         public void Calculate()
         {

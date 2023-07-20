@@ -5,7 +5,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace _30DaysQuickStartTDDBy91.Day14
+namespace _30DaysQuickStartTDDBy91.Day15
 {
     internal class UnitTestAndE2ETestFromRedLightToGreenLight_Step7
     {
@@ -83,10 +83,7 @@ namespace _30DaysQuickStartTDDBy91.Day14
             this.lblCharge.Text = fee.ToString();
         }
 
-        /// <summary>
-        /// 取得畫面資料
-        /// </summary>
-        /// <returns></returns>
+        /// <summary>/// 取得畫面資料/// </summary>/// <returns></returns>
         private Product GetProduct()
         {
             var result = new Product
@@ -108,22 +105,39 @@ namespace _30DaysQuickStartTDDBy91.Day14
 
     public class BlackCat
     {
+        private double _fee;
+        private readonly string _companyName;
+        public Product ShipProduct { get; set; }
+        public BlackCat()
+        {
+            _companyName = "黑貓";
+        }
         public void Calculate()
         {
-            throw new NotImplementedException();
+            var weight = ShipProduct.Weight;
+
+            //計算運費
+            if (weight < 20)
+            {
+
+                _fee = 100 + weight * 10;
+            }
+            else
+            {
+                _fee = 500;
+            }
         }
 
 
-        public Product ShipProduct { get; set; }
 
         public string GetsCompanyName()
         {
-            throw new NotImplementedException();
+            return _companyName;
         }
 
         public double GetsFee()
         {
-            throw new NotImplementedException();
+            return _fee;
         }
     }
 
