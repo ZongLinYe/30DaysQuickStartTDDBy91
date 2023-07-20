@@ -7,6 +7,7 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Xml.Linq;
 using Moq;
+using Moq.Protected;
 
 
 namespace LearnMoq.Day6.MockBehaviorAndCallBaseAndSetupSequenceAndProtectedAndInternal.Tests
@@ -65,7 +66,7 @@ namespace LearnMoq.Day6.MockBehaviorAndCallBaseAndSetupSequenceAndProtectedAndIn
             // Protected():偽造Protected成員
             // 如果需要測試Protected成員的行為，你可以使用下面的方式（不過到了這一步，可能已經意味著你的代碼需要再審查一遍結構是否合理了）
             // 無參數
-            var mock = new Mock<IFoo>();
+            var mock = new Mock<CommandBase>();
             mock.Protected()
                  .Setup<int>("Execute")
                  .Returns(5);
@@ -73,10 +74,30 @@ namespace LearnMoq.Day6.MockBehaviorAndCallBaseAndSetupSequenceAndProtectedAndIn
             mock.Protected()
                 .Setup<string>("Execute",
                     ItExpr.IsAny<string>())
-                .Returns(true);
+                .Returns("true"); // Returns type with .Setup<T> T can be same from the return type of the method being mocked
             //值得注意的是，因為Protected成員“不可見”，因此只能使用字串進行處理
 
+            // using Moq.Protected;
+            // In the test, mocking the `int Execute()` method (1) 
+            //var mock = new Mock<CommandBase>();
+            mock.Protected()
+                 .Setup<int>("Execute")
+                 .Returns(5);
+
+            // If you need argument matching, you MUST use ItExpr rather than It
+            // planning on improving this for vNext (see below for an alternative in Moq 4.8)
+            // Mocking the `bool Execute(string arg)` method (2)
+            mock.Protected()
+                .Setup<bool>("Execute",
+                    ItExpr.IsAny<string>())
+                .Returns(true);
+
+            mock.Protected().As<CommandBaseProtectedMembers>()
+                .Setup(m => m.Execute(It.IsAny<string>()))  // will set up CommandBase.Execute
+                .Returns(true);
         }
+
+
         [TestMethod()]
         public void InternalTest()
         {
@@ -99,4 +120,24 @@ namespace LearnMoq.Day6.MockBehaviorAndCallBaseAndSetupSequenceAndProtectedAndIn
         }
 
     }
+
+    public class CommandBase :CommandBaseProtectedMembers
+    {
+        protected virtual int Execute() {
+            return 1;
+        }         // (1) 
+        protected virtual bool Execute(string arg) { 
+        return true;
+        } // (2)
+
+        bool CommandBaseProtectedMembers.Execute(string arg)
+        {
+            throw new NotImplementedException();
+        }
+    }
+  public interface CommandBaseProtectedMembers
+    {
+        bool Execute(string arg);
+    }
+
 }

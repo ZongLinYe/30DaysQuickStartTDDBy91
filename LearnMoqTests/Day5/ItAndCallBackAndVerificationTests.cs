@@ -186,8 +186,8 @@ namespace LearnMoq.Day5.Tests
             mock.VerifySet(foo => foo.Value = It.IsInRange(1, 5, Moq.Range.Inclusive));
 
             // Verify event accessors (requires Moq 4.13 or later):
-            mock.VerifyAdd(foo => foo.FooEvent += It.IsAny<EventHandler>());
-            mock.VerifyRemove(foo => foo.FooEvent -= It.IsAny<EventHandler>());
+            mock.VerifyAdd(foo => foo.MyEvent += It.IsAny<EventHandler>());
+            mock.VerifyRemove(foo => foo.MyEvent -= It.IsAny<EventHandler>());
 
             // Verify that no other invocations were made other than those already verified (requires Moq 4.8 or later)
             mock.VerifyNoOtherCalls();
