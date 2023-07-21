@@ -7,7 +7,7 @@ using System.Threading.Tasks;
 
 namespace _30DaysQuickStartTDDBy91.Day16
 {
-    internal class CompliantWithOcpAndDip_Step8
+    internal class StrategyPattern_Step9
     {
 
         /// <summary>
@@ -27,6 +27,8 @@ namespace _30DaysQuickStartTDDBy91.Day16
                 // 頁面需要物流商的名稱與運費
                 var companyName = "";
                 double fee = 0;
+
+                ILogistics logistics = GetLogistics(this.drpCompany.SelectedValue, product);
 
                 //選黑貓，計算出運費
                 if (this.drpCompany.SelectedValue == "1")

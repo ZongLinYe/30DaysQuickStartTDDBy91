@@ -28,48 +28,89 @@ namespace _30DaysQuickStartTDDBy91.Day17
                 var companyName = "";
                 double fee = 0;
 
-                //選黑貓，計算出運費
-                if (this.drpCompany.SelectedValue == "1")
+                ILogistics logistics = GetLogistics(this.drpCompany.SelectedValue, product);
+
+                ////選黑貓，計算出運費
+                //if (this.drpCompany.SelectedValue == "1")
+                //{
+                //    // 初始化物流商物件
+                //    //計算
+                //    //BlackCat blackCat = new BlackCat() { ShipProduct = product };
+                //    //blackCat.Calculate();
+                //    //companyName = blackCat.GetsComapanyName();
+                //    //fee = blackCat.GetsFee();
+                //    ILogistics logistics = new BlackCat() { ShipProduct = product };
+                //    logistics.Calculate();
+                //    // 取得物流商名稱
+                //    companyName = logistics.GetsCompanyName();
+                //    // 取得運費結果
+                //    fee = logistics.GetsFee();
+                //}
+                ////選新竹貨運，計算出運費
+                //else if (this.drpCompany.SelectedValue == "2")
+                //{
+                //    //計算
+                //    //Hsinchu hsinchu = new Hsinchu() { ShipProduct = product };
+                //    //hsinchu.Calculate();
+                //    //companyName = hsinchu.GetsComapanyName();
+                //    //fee = hsinchu.GetsFee();
+                //    ILogistics logistics = new Hsinchu() { ShipProduct = product };
+                //    logistics.Calculate();
+                //    companyName = logistics.GetsCompanyName();
+                //    fee = logistics.GetsFee();
+                //}
+                ////選郵局，計算出運費
+                //else if (this.drpCompany.SelectedValue == "3")
+                //{
+                //    //計算
+                //    //PostOffice postOffice = new PostOffice() { ShipProduct = product };
+                //    //postOffice.Calculate();
+                //    //companyName = postOffice.GetsComapanyName();
+                //    //fee = postOffice.GetsFee();
+                //    ILogistics logistics = new PostOffice() { ShipProduct = product };
+                //    logistics.Calculate();
+                //    companyName = logistics.GetsCompanyName();
+                //    fee = logistics.GetsFee();
+                //}
+                ////發生預期以外的狀況，呈現警告訊息，回首頁
+                //else
+                //{
+                //    var js = "alert('發生不預期錯誤，請洽系統管理者');location.href='http://tw.yahoo.com/';";
+                //    this.ClientScript.RegisterStartupScript(this.GetType(), "back", js, true);
+                //}
+
+                if(logistics != null)
                 {
-                    // 初始化物流商物件
-                    //計算
-                    ILogistics logistics = new BlackCat() { ShipProduct = product };
                     logistics.Calculate();
-                    // 取得物流商名稱
                     companyName = logistics.GetsCompanyName();
-                    // 取得運費結果
                     fee = logistics.GetsFee();
+                    // 呈現結果
+                    // 呈現運費結果與物流商名稱
+                    this.SetResult(companyName, fee);
                 }
-                //選新竹貨運，計算出運費
-                else if (this.drpCompany.SelectedValue == "2")
-                {
-                    //計算
-                    Hsinchu hsinchu = new Hsinchu() { ShipProduct = product };
-                    hsinchu.Calculate();
-                    companyName = hsinchu.GetsCompanyName();
-                    fee = hsinchu.GetsFee();
-                }
-                //選郵局，計算出運費
-                else if (this.drpCompany.SelectedValue == "3")
-                {
-                    //計算
-                    PostOffice postOffice = new PostOffice() { ShipProduct = product };
-                    postOffice.Calculate();
-                    companyName = postOffice.GetsCompanyName();
-                    fee = postOffice.GetsFee();
-                }
-                //發生預期以外的狀況，呈現警告訊息，回首頁
                 else
                 {
                     var js = "alert('發生不預期錯誤，請洽系統管理者');location.href='http://tw.yahoo.com/';";
                     this.ClientScript.RegisterStartupScript(this.GetType(), "back", js, true);
                 }
 
-                // 呈現結果
-                // 呈現運費結果與物流商名稱
-                this.SetResult(companyName, fee);
             }
 
+        }
+
+        private ILogistics GetLogistics(string company, Product product)
+        {
+            switch(company)
+            {
+                case "1":
+                    return new BlackCat() { ShipProduct = product };
+                case "2":
+                    return new Hsinchu() { ShipProduct = product };
+                case "3":
+                    return new PostOffice() { ShipProduct = product };
+                default:
+                    return null;
+            }
         }
 
         /// <summary>
@@ -83,7 +124,10 @@ namespace _30DaysQuickStartTDDBy91.Day17
             this.lblCharge.Text = fee.ToString();
         }
 
-        /// <summary>/// 取得畫面資料/// </summary>/// <returns></returns>
+        /// <summary>
+        /// 取得畫面資料
+        /// </summary>
+        /// <returns></returns>
         private Product GetProduct()
         {
             var result = new Product
